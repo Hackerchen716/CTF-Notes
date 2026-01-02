@@ -4,12 +4,14 @@
 
 ## 📖 学习资源
 
-**当前课程：** [华云安 CTF Web 入门](http://ke.huayunsys.com/courses/show2/44)
+**当前课程：** [华云 CTF Web 入门](http://ke.huayunsys.com/courses/show2/44)
 
 **刷题平台：**
 
 - [BUUCTF](https://buuoj.cn) - 题目多，分类清晰
 - [攻防世界](https://adworld.xctf.org.cn) - 新手友好
+- [NSSCTF](https://www.nssctf.cn) - 题目新
+- [华云 CTF](https://my6n.huayunsys.com) - 配套练习
 
 **参考文档：**
 - [CTF Wiki](https://ctf-wiki.org) - 知识点全面
@@ -24,6 +26,7 @@
 | 日期 | 主题 | 刷题数 | 笔记 |
 |------|------|--------|------|
 | 01-01 | Web 基础 | 14 | [笔记](./2026-01-01-Web基础.md) |
+| 01-02 | 信息泄露 & 爆破 | 14 | [笔记](./2026-01-02-信息泄露与爆破.md) |
 
 ---
 
@@ -37,6 +40,9 @@
 | ✅ | HTTP 协议 | GET/POST、Cookie、Header 伪造 |
 | ✅ | PHP 弱类型 | `==` 弱比较、is_numeric 绕过 |
 | ✅ | 命令执行 | 管道符、绕过技巧 |
+| ✅ | 信息泄露 | .git、.svn、备份文件 |
+| ✅ | JS 分析 | 源码审计、JSFuck |
+| ✅ | 暴力破解 | Burp Intruder、Payload 处理 |
 | ⬜ | SQL 注入 | Union、盲注、报错注入 |
 | ⬜ | XSS | 反射型、存储型、DOM型 |
 | ⬜ | 文件上传 | 后缀绕过、内容绕过 |
@@ -64,6 +70,7 @@
 | dirsearch | 目录扫描 | `python dirsearch.py -u url -e *` |
 | sqlmap | SQL 注入自动化 | `sqlmap -u url --dbs` |
 | GitHack | Git 泄露利用 | `python GitHack.py url/.git/` |
+| **ctf_brute_v6.py** | 高速爆破 | `python ctf_brute_v6.py -u url` |
 
 ---
 
@@ -75,7 +82,6 @@
 # 命令执行
 127.0.0.1;cat /flag
 127.0.0.1|ls
-127.0.0.1 && whoami
 
 # PHP 弱类型
 ?a=abc&b=1235abc
@@ -83,7 +89,9 @@
 # HTTP 头伪造
 X-Forwarded-For: 127.0.0.1
 Referer: https://xxx.com
-User-Agent: xxx
+
+# Payload 处理（爆破）
+password → admin:password → Base64
 ```
 
 ### 敏感文件路径
@@ -92,8 +100,28 @@ User-Agent: xxx
 /robots.txt
 /flag.php
 /.git/config
+/.git/HEAD
 /index.php.bak
 /www.zip
+/.DS_Store
+```
+
+---
+
+## 📂 仓库结构
+
+```
+CTF-NOTES/
+├── README.md                          # 本文件
+├── 2026-01-01-Web基础.md              # Day 1 笔记
+├── 2026-01-02-信息泄露与爆破.md        # Day 2 笔记
+├── tools/                             # 工具
+│   └── ctf_brute_v6.py                # 通用爆破工具
+└──writeups/                          # 题解
+    ├── BUUCTF/
+    ├── NSSCTF/
+    └── 华云/
+  
 ```
 
 ---
@@ -104,6 +132,10 @@ User-Agent: xxx
 |------|--------|------|
 | BUUCTF | 1 | 100 |
 | 攻防世界 | 13 | 50 |
+| NSSCTF | 2 | 30 |
+| 华云 | 12 | 20 |
+
+**总计：28 道**
 
 ---
 
